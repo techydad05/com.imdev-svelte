@@ -10,7 +10,7 @@ import logo from './svelte-logo.svg';
 import { onMount } from 'svelte';
 import { userStore, logout } from "../../stores/userStore";
 let isOpen, toggled = false;
-let toggleThemes = true;
+export let toggleThemes = true;
 let toggleModal = () => {
     toggled = true;
     isOpen = false;

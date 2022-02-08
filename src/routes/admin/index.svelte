@@ -1,5 +1,5 @@
 <svelte:head>
-  <script src="https://cdn-tailwindcss.vercel.app/"></script>
+  <script defer src="https://cdn-tailwindcss.vercel.app/"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daisyui/1.25.4/full.css" integrity="sha512-P0MPYYeQnvVcmM4h7BIypuNi1r/HOtt3ZQO88XFhULismyiXR3Zo63CWIWntrIlYnR9oigbcb1HU9kzqcM/rbw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </svelte:head>
 <script>
@@ -56,7 +56,7 @@
               </tbody>
             </table>
           </div> -->
-          <h1 class="text-3xl pl-4 font-bold">Add some stuff... like html.</h1>
+          <h1 class="text-3xl pl-6 font-bold">Add some stuff... like html.</h1>
           <div id="editor-container" class="mx-auto w-[95vw] h-[400px] relative p-4">
             <div id="editor"></div>
           </div>
