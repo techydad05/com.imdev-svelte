@@ -18,7 +18,7 @@ const themes = ['light','dark','cupcake','bumblebee','emerald','corporate','synt
 // NOTE: the element that is using one of the theme attributes must be in the DOM on mount
 onMount(() => {
   themeChange(false)
-  // 👆 false parameter is required for svelte
+  // false parameter is required for svelte
 });
 </script>
 
@@ -43,7 +43,7 @@ onMount(() => {
 		</nav>
     </div> 
     <div class="navbar-end">
-      <div on:click={() => openMenu()} class:open={isOpen} class="md:hidden burger-icon flex-col justify-self-end cursor-pointer z-[999999]">
+      <div on:click={() => openMenu()} class:open={isOpen} class="md:hidden burger-icon flex-col justify-self-end cursor-pointer z-50">
         <img class="w-9" src="/hamburger-1.png" alt="hb1 icon">
         <img class="w-9" src="/hamburger-2.png" alt="hb1 icon">
         <img class="relative w-9 mb-[-8px] z-50" src="/hamburger-3.png" alt="hb1 icon">

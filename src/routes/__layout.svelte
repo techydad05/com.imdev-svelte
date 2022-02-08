@@ -4,13 +4,13 @@
 	import Loading from './loading.svelte';
 	import '../app.css';
 	import { navigating } from '$app/stores';
-	export let loading;
-	navigating.subscribe((e) => {
-		console.log("e:", e)
-		loading = e;
+	export let loading = false;
+	navigating.subscribe((route) => {
+		console.log("e:", route);
+		loading = route;
 	});
 </script>
-<Loading loading={true} />
+<Loading loading={loading} />
 <Header>
 	<slot />
 </Header>
