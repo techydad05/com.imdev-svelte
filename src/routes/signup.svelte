@@ -1,10 +1,10 @@
 <script>
     import { userStore, signupUser, loginUser } from '../stores/userStore';
 	const formData = {};
-	let results = {};
-	let isSignup = true;
-    let toggled = false;
-    let loadingBtn = false;
+	let isSignup, toggled, loadingBtn = false;
+    let changeSignUp = () => {
+        isSignup = !isSignup;
+    }
     let toggleModal = () => {
         toggled = true;
         setTimeout(() => {
@@ -18,7 +18,7 @@
                 toggleModal();
                 loadingBtn = false;
                 formData.email, formData.password = '';
-                console.log("user login:", $userStore)
+                console.log("user signup:", $userStore)
             })
         } else {
             loginUser(formData).then(() => {
@@ -34,7 +34,11 @@
 {#if !$userStore}
 <div id="signup-in-form" class="flex justify-center w-12/12 py-20">
     <div class="form-group p-5 space-y-4 inline-flex flex-col justify-center">
-        <h2 class="text-3xl font-bold"><div on:click={() => isSignup = !isSignup} class:btn-active={isSignup} class="btn btn-ghost text-2xl">Sign Up</div> | <div on:click={() => isSignup = !isSignup} class:btn-active={!isSignup} class="btn btn-ghost text-2xl">Login!</div></h2>
+        <div class="flex justify-center space-x-1">
+            <button class:btn-active={!isSignup} on:click={() => changeSignUp()} class="btn btn-ghost text-2xl">Login</button>
+            <div class="text-2xl flex items-center justify-center pb-2">|</div>    
+            <button class:btn-active={isSignup} on:click={() => changeSignUp()} class="btn btn-ghost text-2xl">Signup</button>    
+        </div>
         <input bind:value={formData.email} placeholder="Email" class="form-control input input-primary" type="email" name="email">
         <input bind:value={formData.password} placeholder="Password" class="form-control input input-primary" type="password" name="password">
         <button class:loading={loadingBtn} on:click={() => signUpSignIn()} class="btn btn-primary">{isSignup ? "Sign Up" : "Log In"}</button>
@@ -42,16 +46,13 @@
 </div>
 {/if}
 <div class:modal-open={toggled} class="modal items-center px-10">
-    <div class="modal-box">
-        {#if isSignup}
-            {#if $userStore}
+    <div class="modal-box rounded-2xl">
+        {#if $userStore}
+            {#if isSignup}
                 <h1 class="text-3xl text-primary-focus">Thanks {$userStore.email} for signing up!</h1>
-                <p class="text-lg">Please check your email for verification.</p>
-                {:else if results.error}
-                <h1 class="text-4xl text-primary-focus">An error has occured: {results.error.message}</h1>
+                {:else}
+                <h1 class="text-3xl text-primary-focus">You have logged in as {$userStore.email}!</h1>
             {/if}
-        {:else}
-            <h1 class="text-6xl text-primary-focus">You have logged in!</h1>
         {/if}
         <span class="text-8xl">😽</span>
     </div>

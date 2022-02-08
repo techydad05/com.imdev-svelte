@@ -1,3 +1,7 @@
+<svelte:head>
+  <script src="https://cdn-tailwindcss.vercel.app/"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daisyui/1.25.4/full.css" integrity="sha512-P0MPYYeQnvVcmM4h7BIypuNi1r/HOtt3ZQO88XFhULismyiXR3Zo63CWIWntrIlYnR9oigbcb1HU9kzqcM/rbw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</svelte:head>
 <script>
     import { userStore } from "../../stores/userStore";
     import { onMount } from "svelte";
@@ -32,13 +36,7 @@
     });
     
     </script>
-    <div class="p-4 grid gap-4 grid-rows-3">
-        <code class="max-h-[300px] overflow-auto">
-            <pre>
-                {JSON.stringify($userStore, null, 2)}
-            </pre>
-        </code>
-        <div class="overflow-x-auto">
+        <!-- <div class="overflow-x-auto">
             <table class="table w-full">
               <thead>
                 <tr>
@@ -51,36 +49,18 @@
               <tbody>
                 <tr>
                   <th>1</th> 
-                  <td>Cy Ganderton</td> 
-                  <td>Quality Control Specialist</td> 
+                  <td>Add user info here...</td> 
+                  <td>Quality Control</td> 
                   <td>Blue</td>
-                </tr>
-                <tr>
-                  <th>2</th> 
-                  <td>Hart Hagerty</td> 
-                  <td>Desktop Support Technician</td> 
-                  <td>Purple</td>
-                </tr>
-                <tr>
-                  <th>3</th> 
-                  <td>Brice Swyre</td> 
-                  <td>Tax Accountant</td> 
-                  <td>Red</td>
-                </tr>
-                <tr>
-                  <th>4</th> 
-                  <td>Marjy Ferencz</td> 
-                  <td>Office Assistant I</td> 
-                  <td>Crimson</td>
                 </tr>
               </tbody>
             </table>
-          </div>
-        <div id="editor-container" class="h-[400px] relative">
+          </div> -->
+          <h1 class="text-3xl pl-4 font-bold">Add some stuff... like html.</h1>
+          <div id="editor-container" class="mx-auto w-[95vw] h-[400px] relative p-4">
             <div id="editor"></div>
-        </div>
-        <Preview content={previewContent} />
-    </div>
+          </div>
+          <Preview content={previewContent} />
     
     <style lang="postcss">
         #editor { 

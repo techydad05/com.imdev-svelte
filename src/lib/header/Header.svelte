@@ -9,8 +9,15 @@ import { page } from '$app/stores';
 import logo from './svelte-logo.svg';
 import { onMount } from 'svelte';
 import { userStore, logout } from "../../stores/userStore";
-let isOpen = false;
+let isOpen, toggled = false;
 let toggleThemes = true;
+let toggleModal = () => {
+    toggled = true;
+    isOpen = false;
+    setTimeout(() => {
+        toggled = false;
+    }, 3000);
+}
 function openMenu() {
     isOpen = !isOpen;
 }
@@ -58,8 +65,15 @@ onMount(() => {
         <a on:click={() => openMenu()} class:btn-active={$page.url.pathname === '/todos'} class="m-2 btn btn-md self-stretch btn-outline btn-ghost" href="/todos">Todos</a>
         <a on:click={() => openMenu()} class:btn-active={$page.url.pathname === '/admin'} class="m-2 btn btn-md self-stretch btn-outline btn-ghost" href="/admin">Admin</a>
         {#if $userStore}
-        <a on:click={() => logout()} class="m-2 btn btn-md self-stretch btn-outline btn-ghost" href="/admin">Logout</a>       
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <a on:click={() => logout() && toggleModal()} class="m-2 btn btn-md self-stretch btn-outline btn-ghost">Logout</a>       
         {/if}
+    </div>
+</div>
+<div class:modal-open={toggled} class="modal items-center px-10">
+    <div class="modal-box rounded-2xl">
+        <h1 class="text-3xl text-primary-focus">Goodbye for now...</h1>
+        <span class="text-8xl">😿</span>
     </div>
 </div>
 
