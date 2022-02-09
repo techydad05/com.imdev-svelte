@@ -44,7 +44,7 @@ onMount(() => {
 		<nav class="flex items-stretch">
 			<a class:btn-active={$page.url.pathname === '/'} href='/' class="btn btn-ghost btn-sm rounded-btn">Home</a>
 			<a class:btn-active={$page.url.pathname === '/todos'} href='/todos' class="btn btn-ghost btn-sm rounded-btn">Todos</a>
-			<a sveltekit:prefetch class:btn-active={$page.url.pathname === '/admin'} href='/admin' class="btn btn-ghost btn-sm rounded-btn">Admin</a>
+			<a class:btn-active={$page.url.pathname === '/admin'} href='/admin' class="btn btn-ghost btn-sm rounded-btn">Admin</a>
 		</nav>
     </div> 
     <div class="navbar-end">
@@ -68,12 +68,14 @@ onMount(() => {
         {/if}
     </div>
 </div>
-<div class:modal-open={toggled} class="modal items-center px-10">
-    <div class="modal-box rounded-2xl">
-        <h1 class="text-3xl text-primary-focus">Goodbye for now...</h1>
-        <span class="text-8xl">😿</span>
+{#if $userStore}
+    <div class:modal-open={toggled} class="modal items-center px-10">
+        <div class="modal-box rounded-2xl">
+            <h1 class="text-3xl text-primary-focus">Goodbye for now...</h1>
+            <span class="text-8xl">😿</span>
+        </div>
     </div>
-</div>
+{/if}
 
 <style lang="postcss">
     .burger-icon img {

@@ -11,10 +11,12 @@
 	});
 </script>
 <Loading loading={loading} />
-<Header>
+<div class="flex flex-col min-h-screen justify-between">
+	<Header>
+		<slot />
+	</Header>
 	<slot />
-</Header>
-<slot />
-<Footer>
-	<slot />
-</Footer>
+	<Footer>
+		<slot />
+	</Footer>
+</div>
