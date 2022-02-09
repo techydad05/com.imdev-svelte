@@ -3,8 +3,6 @@
 </svelte:head>
 
 <script>
-// todo: is this doing anything?
-// export const ssr = false;
 import { page } from '$app/stores';
 import logo from './svelte-logo.svg';
 import { onMount } from 'svelte';
