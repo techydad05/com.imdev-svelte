@@ -1,7 +1,5 @@
 <svelte:head>
   <script defer src="https://cdn-tailwindcss.vercel.app/"></script>
-  <!-- load emmet code and snippets compiled for browser -->
-<script defer type="javascript" src="https://cloud9ide.github.io/emmet-core/emmet.js"></script>
 </svelte:head>
 <script>
   import { userStore } from "../../stores/userStore";
@@ -17,7 +15,6 @@
           const ace = await import('$lib/ace-builds/ace.min.js');
           await import('../../lib/ace-builds/theme-dracula.min.js');
           await import('../../lib/ace-builds/mode-html.min.js');
-          await import('../../lib/ace-builds/ext-emmet.min.js');
           return ace;
       })().then(() => {
           ace.config.set('basePath', '/')
@@ -28,13 +25,9 @@
               useWorker: false,
               fontSize: '16px',
               cursorStyle: 'slim',
-              value: 'Enter some shit...',
+              value: 'Enter some stuff...',
               wrap: true,
-              enableEmmet: true,
-              editorOptions: {
-                enableEmmet: true
-              }
-          })
+          });
           editor.setTheme("ace/theme/dracula");
           editor.session.setMode("ace/mode/html");
           editor.on('change', (e) => {
@@ -67,8 +60,10 @@
   <div id="editor-container" class="min-h-[100px] w-screen relative">
     <div id="editor"></div>
   </div>
-</div>        
-{@html previewContent}
+</div>
+<div class="flex items-center space-x-8 flex-wrap space-4">
+  {@html previewContent}
+</div>     
 
 <div class="collapse border rounded-box border-base-300 collapse-arrow">
   <input type="checkbox"> 
@@ -88,6 +83,7 @@
 </div>
     
 <style lang="postcss">
+    @import "https://cdn.jsdelivr.net/npm/daisyui@1.25.4/dist/full.css";
     #editor { 
         position: absolute;
         top: 0;
