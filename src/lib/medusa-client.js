@@ -1,4 +1,4 @@
-import Medusa from "@medusajs/medusa-js";
+import * as Medusa from "@medusajs/medusa-js";
 // import creds from '../creds.js';
 
 const BACKEND_URL = import.meta.env.VITE_MEDUSA_BACKEND_URL || "http://localhost:9000";
