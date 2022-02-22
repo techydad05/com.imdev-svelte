@@ -8,7 +8,7 @@ import logo from './svelte-logo.svg';
 import { onMount } from 'svelte';
 import { userStore, logout } from "../../stores/userStore";
 import { themes } from "../../stores/themes";
-import { getCart } from "$lib/medusa-client";
+// import { getCart } from "$lib/medusa-client";
 let isOpen, toggled, cartOpen, pageLoaded = false;
 export let toggleThemes = true;
 let toggleModal = () => {
@@ -80,7 +80,7 @@ onMount(() => {
     </div>
 </div>
 <div class:open={cartOpen} class="cart flex h-0 overflow-hidden">
-    {#await getCart()}
+    <!-- {#await getCart()}
         loading...
     {:then cart}
         {#each cart.items as item}
@@ -88,10 +88,9 @@ onMount(() => {
                 <img width="50px" src={item.thumbnail} alt="">
             </div>
         {/each}
-        <!-- {console.log(cart.items)} -->
     {:catch error}
         {console.error(error)}
-    {/await}
+    {/await} -->
 </div>
 {#if $userStore}
     <div class:modal-open={toggled} class="modal items-center px-10">
