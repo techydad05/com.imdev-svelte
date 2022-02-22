@@ -4,12 +4,12 @@
 <script>
   import { userStore } from "../../stores/userStore";
   import { onMount } from "svelte";
-  // import Preview from './preview.svelte';
-  // use the compile method here for mdsvex once
-  // its working again
-  // import { mdsvex } from 'mdsvex';
-  
+  import { Stretch } from "svelte-loading-spinners";
+  import { productStore } from "../../stores/productStore";
   let previewContent = '';
+  let aceEditor = null;
+  let firstFocused = false;
+  console.log("product store:", productStore);
   onMount(() => {
       (async () => {
           const ace = await import('$lib/ace-builds/ace.min.js');
@@ -17,24 +17,44 @@
           await import('../../lib/ace-builds/mode-html.min.js');
           return ace;
       })().then(() => {
+        // console.log('ace:', ace);
+        // console.log('editor:', editor);
           ace.config.set('basePath', '/')
-          var editor = ace.edit("editor");
-          // console.log('ace:', ace);
-          // console.log('editor:', editor);
-          editor.setOptions({
-              useWorker: false,
-              fontSize: '16px',
-              cursorStyle: 'slim',
-              value: 'Enter some stuff...',
-              wrap: true,
+          aceEditor = ace.edit("editor");
+          console.log("editor loaded");
+          aceEditor.setOptions({
+            useWorker: false,
+            fontSize: '16px',
+            cursorStyle: 'slim',
+            wrap: true,
           });
-          editor.setTheme("ace/theme/dracula");
-          editor.session.setMode("ace/mode/html");
-          editor.on('change', (e) => {
-              previewContent = editor.getValue();
+          aceEditor.setTheme("ace/theme/dracula");
+          aceEditor.session.setMode("ace/mode/html");
+          aceEditor.on('change', () => {
+              previewContent = aceEditor.getValue();
+          });
+          aceEditor.on('focus', () => {
+            if (!firstFocused) {
+              aceEditor.session.setValue('');
+            }
+            firstFocused = true;
           });
       });
   });
+  const getKitchenSinkItem = (e) => {
+    e.target.classList.forEach(c => {
+      if (c.includes('s-')) {
+        e.target.classList.remove(c);
+      }
+    });
+    aceEditor.session.setValue(aceEditor.getValue() + e.target.outerHTML);
+    return e.target.outerHTML;
+  }
+  const addItemClass = (e) => {
+    const input = prompt();
+    e.target.classList.add(input);
+    console.log("ct", e.target);  
+  }
 </script>
         <!-- <div class="overflow-x-auto">
             <table class="table w-full">
@@ -56,31 +76,39 @@
               </tbody>
             </table>
           </div> -->
-<div class="flex flex-wrap flex-1 bg-teal-200 p-4">
-  <div id="editor-container" class="min-h-[100px] w-screen relative">
+<div class="flex flex-wrap flex-1 bg-slate-650 p-4">
+  <div id="editor-container" class="min-h-[100px] w-screen relative shadow-md">
+    {#if !aceEditor }
+      <div class="flex h-full items-center justify-center bg-slate-650">
+        <Stretch size="60" color="white"></Stretch>
+      </div>  
+    {/if}
     <div id="editor"></div>
   </div>
 </div>
-<div class="flex items-center space-x-8 flex-wrap space-4">
-  {@html previewContent}
-</div>     
 
-<div class="collapse border rounded-box border-base-300 collapse-arrow">
-  <input type="checkbox"> 
-  <div class="collapse-title text-xl font-medium">
-    DaisyUI - Kitchen Sink
-  </div> 
-  <div class="collapse-content"> 
-    <div class="flex flex-wrap items-center justify-center space-x-4">
-        <button class="btn">neutral</button> 
-        <button class="btn btn-primary">primary</button> 
-        <button class="btn btn-secondary">secondary</button> 
-        <button class="btn btn-accent">accent</button> 
-        <button class="btn btn-ghost">ghost</button> 
-        <button class="btn btn-link">link</button>
+<div id="preview" on:click={(e) => addItemClass(e)} class="flex-wrap p-1">
+  {@html previewContent}
+</div> 
+
+<div class="flex flex-col items-center justify-center my-4">
+  <h1 class="text-2xl">DaisyUI - Kitchen Sink</h1>
+  <div id="kitchen-sink" class="p-2" on:dblclick={(e) => console.log(getKitchenSinkItem(e))}>
+    <div class="grid w-full h-20 rounded-md items-center justify-center bg-slate-300">
+      <h1 class="text-2xl inline text-black cursor-pointer"><span class="text-4xl font-bold">+</span>Grid</h1>  
     </div>
+    <div class="flex w-full h-20 rounded-md items-center justify-center bg-slate-300">
+      <h1 class="text-2xl inline text-black cursor-pointer"><span class="text-4xl font-bold">+</span>Flex</h1>  
+    </div>
+    <button class="btn">neutral</button> 
+    <button class="btn btn-primary">primary</button> 
+    <button class="btn btn-secondary">secondary</button> 
+    <button class="btn btn-accent">accent</button> 
+    <button class="btn btn-ghost">ghost</button> 
+    <button class="btn btn-link">link</button>
   </div>
 </div>
+
     
 <style lang="postcss">
     @import "https://cdn.jsdelivr.net/npm/daisyui@1.25.4/dist/full.css";
@@ -90,5 +118,14 @@
         right: 0;
         bottom: 0;
         left: 0;
+    }
+    button {
+      @apply shadow-md;
+    }
+    button:hover {
+      @apply shadow-2xl;
+    }
+    #kitchen-sink {
+      @apply flex-wrap space-y-4 justify-center items-center;
     }
 </style>

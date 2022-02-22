@@ -1,6 +1,5 @@
 import { supabase } from "../supabase";
 import { writable } from "svelte/store";
-import { null_to_empty } from "svelte/internal";
 
 export const userStore = writable(supabase.auth.user());
 
