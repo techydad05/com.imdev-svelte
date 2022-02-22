@@ -2,6 +2,8 @@ import Medusa from "@medusajs/medusa-js";
 
 const BACKEND_URL = import.meta.env.VITE_MEDUSA_BACKEND_URL || "http://localhost:9000";
 
+console.log("medusa constructor:", Medusa);
+
 const createClient = () => new Medusa({ baseUrl: BACKEND_URL });
 
 export const client = createClient();
