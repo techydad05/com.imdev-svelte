@@ -1,4 +1,3 @@
-import { default as Medusa } from "@medusajs/medusa-js";
 import MedusaModule from "@medusajs/medusa-js";
 const Medusa = MedusaModule.default;
 
