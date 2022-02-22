@@ -1,7 +1,7 @@
 import Medusa from "@medusajs/medusa-js";
-import creds from '../creds.js';
+// import creds from '../creds.js';
 
-const BACKEND_URL = creds?.medusa_backend_url || "http://localhost:9000";
+const BACKEND_URL = import.meta.env.VITE_MEDUSA_BACKEND_URL || "http://localhost:9000";
 
 const createClient = () => new Medusa({ baseUrl: BACKEND_URL });
 
