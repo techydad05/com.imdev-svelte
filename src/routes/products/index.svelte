@@ -2,6 +2,8 @@
 // import { getProducts } from "$lib/medusa-client";
 import { Stretch } from "svelte-loading-spinners";
 import "../../medusa-client";
+import { createClient } from "../../medusa-client";
+createClient();
 </script>
 <div class="">
     <h1 class="text-4xl text-center my-4">Medusa Products:</h1>
