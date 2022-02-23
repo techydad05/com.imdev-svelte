@@ -1,10 +1,11 @@
 <script>
-import { getProducts } from "$lib/medusa-client";
+// import { getProducts } from "$lib/medusa-client";
 import { Stretch } from "svelte-loading-spinners";
+import "../../medusa-client";
 </script>
 <div class="">
     <h1 class="text-4xl text-center my-4">Medusa Products:</h1>
-    {#await getProducts()}
+    <!-- {#await getProducts()}
         <div class="flex h-full items-center justify-center bg-slate-650">
             <Stretch size="60" color="white"></Stretch>
         </div>    
@@ -23,5 +24,5 @@ import { Stretch } from "svelte-loading-spinners";
         {/each}
     {:catch error}
         {console.error(error)}
-    {/await}
+    {/await} -->
 </div>
