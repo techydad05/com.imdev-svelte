@@ -8,7 +8,7 @@ const config = {
 
 	kit: {
 		// adapter: adapter(),
-		adapter: vercel(options),
+		adapter: vercel(),
 		// Override http methods in the Todo forms
 		methodOverride: {
 			allowed: ['PATCH', 'DELETE']
