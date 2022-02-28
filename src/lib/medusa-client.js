@@ -1,3 +1,18 @@
+export const getProducts = async () => {
+    const response = await fetch("https://medusa-store-420.herokuapp.com/store/products");
+    return response.json();
+}
+
+
+
+
+
+
+
+
+
+
+
 // import Medusa from "@medusajs/medusa-js";
 
 // const BACKEND_URL = import.meta.env.VITE_MEDUSA_BACKEND_URL || "http://localhost:9000";

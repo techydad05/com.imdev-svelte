@@ -79,8 +79,8 @@ onMount(() => {
         {/if}
     </div>
 </div>
-<div class:open={cartOpen} class="cart flex h-0 overflow-hidden">
-    <!-- {#await getCart()}
+<!-- <div class:open={cartOpen} class="cart flex h-0 overflow-hidden">
+    {#await getCart()}
         loading...
     {:then cart}
         {#each cart.items as item}
@@ -90,8 +90,8 @@ onMount(() => {
         {/each}
     {:catch error}
         {console.error(error)}
-    {/await} -->
-</div>
+    {/await}
+</div> -->
 {#if $userStore}
     <div class:modal-open={toggled} class="modal items-center px-10">
         <div class="modal-box rounded-2xl">
@@ -130,12 +130,14 @@ onMount(() => {
     .open.mobile-menu {
         right: 0;
     }
-    .cart {
+    /* .cart {
         transition: all 0.15s linear;
+        display: none;
     }
     .open.cart {
         @apply h-40;
-    }
+        display: block;
+    } */
 	.overlay {
 		position: fixed;
 		top: 0;
