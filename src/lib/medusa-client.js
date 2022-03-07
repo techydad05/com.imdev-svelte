@@ -3,6 +3,11 @@ export const getProducts = async () => {
     return response.json();
 }
 
+export const getProduct = async (productId) => {
+    const response = await fetch(`https://medusa-store-420.herokuapp.com/store/products/${productId}`);
+    return response.json();
+}
+
 
 
 

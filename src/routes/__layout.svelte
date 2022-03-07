@@ -9,6 +9,9 @@
 		console.log("route:", route);
 		loading = route;
 	});
+	import { getCustomer, customerStore } from 
+	"../stores/customerStore";
+	getCustomer();
 </script>
 <script context="module">
 	// working on getting menu items dynamically

@@ -29,6 +29,7 @@
 		"@medusajs/medusa-js": "^1.0.12",
 		"@supabase/supabase-js": "^1.29.4",
 		"cookie": "^0.4.1",
-		"daisyui": "^2.2.0"
+		"daisyui": "^2.2.0",
+		"sveltable": "0.0.6"
 	}
 }

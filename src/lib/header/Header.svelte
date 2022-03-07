@@ -7,7 +7,9 @@ import { page } from '$app/stores';
 import logo from './svelte-logo.svg';
 import { onMount } from 'svelte';
 import { userStore, logout } from "../../stores/userStore";
+import { customerStore, logOutCustomer } from '../../stores/customerStore';
 import { themes } from "../../stores/themes";
+import Customer from '$lib/customer.svelte';
 // import { getCart } from "$lib/medusa-client";
 let isOpen, toggled, cartOpen, pageLoaded = false;
 export let toggleThemes = true;
@@ -75,7 +77,10 @@ onMount(() => {
         {#if $userStore}
         <a on:click={() => openMenu()} class:btn-active={$page.url.pathname === '/admin'} class="m-2 btn btn-md self-stretch btn-outline btn-ghost" href="/admin">Admin</a> 
         <!-- svelte-ignore a11y-missing-attribute -->
-        <a on:click={() => logout() && toggleModal()} class="m-2 btn btn-md self-stretch btn-outline btn-ghost">Logout</a>    
+        <a on:click={() => logout() && toggleModal()} class="m-2 btn btn-md self-stretch btn-outline btn-ghost">Logout</a> 
+        {:else if $customerStore}    
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <a on:click={() => logOutCustomer($customerStore) && toggleModal()} class="m-2 btn btn-md self-stretch btn-outline btn-ghost">Logout</a> 
         {/if}
     </div>
 </div>

@@ -1,6 +1,6 @@
 <script>
 import { page } from '$app/stores';
-// import { getProduct, addToCart } from '$lib/medusa-client';
+import { getProduct } from '$lib/medusa-client';
 import { Stretch } from "svelte-loading-spinners";
 let productId, variant;
 let quantity = 1;
@@ -13,6 +13,7 @@ const openModal = (e) => {
     console.log(!!modalImg);
 }
 </script>
+getProduct(productId).then(e => console.log(e))
 // <div class="flex items-start mt-4 justify-center">
 //     {#await getProduct(productId)}
 //         <div class="flex h-full items-start justify-center bg-slate-650">
@@ -27,7 +28,7 @@ const openModal = (e) => {
 //                     <div>
 //                     <h1 class="text-5xl font-bold">{product.title}</h1>
 //                     <p class="py-6">{product.description}</p>
-//                     <button disabled={!variant} on:click={() => addToCart(variant, quantity)} class="btn btn-primary">Add to Cart</button>
+//                     <!-- <button disabled={!variant} on:click={() => addToCart(variant, quantity)} class="btn btn-primary">Add to Cart</button> -->
 //                     <select on:change={(e) => variant = e.currentTarget.value} class="select ml-2 mb-4" name="variant" id="variant">
 //                         <option disabled selected>Select A Size</option>
 //                         {#each product.variants as variant}

@@ -34,6 +34,9 @@
 {#if !$userStore}
 <div id="signup-in-form" class="flex justify-center w-12/12 py-20">
     <div class="form-group p-5 space-y-4 inline-flex flex-col justify-center">
+        <div class="flex justify-center">
+            <h1 class="text-2xl">User:</h1>    
+        </div>
         <div class="flex justify-center space-x-1">
             <button class:btn-active={!isSignup} on:click={() => changeSignUp()} class="btn btn-ghost text-2xl">Login</button>
             <div class="text-2xl flex items-center justify-center pb-2">|</div>    
